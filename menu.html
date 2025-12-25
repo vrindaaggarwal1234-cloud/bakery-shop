@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu | The Daily Crumb</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@400;700&display=swap"
+        rel="stylesheet">
+    <!-- Local CSS -->
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Menu Specific Styles to override/augment styles.css without changing global file too much */
+        .menu-hero {
+            background-color: var(--card-bg);
+            padding: 3rem 5%;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .menu-hero h1 {
+            font-size: 3rem;
+            color: var(--text-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .menu-hero p {
+            font-size: 1.2rem;
+            color: var(--accent-color);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="logo">The Daily Crumb</div>
+
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="menu.html" style="color: var(--accent-color);">Menu</a>
+            <a href="cart.html">Cart</a>
+        </div>
+
+
+    </nav>
+
+    <!-- Menu Header -->
+    <header class="menu-hero">
+        <h1>Our Full Menu</h1>
+        <p>Freshly baked delight, just for you.</p>
+    </header>
+
+    <!-- Product Grid -->
+    <section class="products-section">
+        <div class="product-grid">
+
+            <!-- 1. Classic Sourdough Loaf -->
+            <article class="product-card">
+                <div class="product-image">
+                    <img src="./assets/sourdough.png" alt="Classic Sourdough Loaf">
+                </div>
+                <div class="product-info">
+                    <h3>Classic Sourdough Loaf</h3>
+                    <p class="price">$6.00</p>
+                    <button class="add-to-cart-btn" data-product="Classic Sourdough Loaf" data-price="6.00">Add to
+                        Cart</button>
+                </div>
+            </article>
+
+            <!-- 2. Chocolate Croissant -->
+            <article class="product-card">
+                <div class="product-image">
+                    <img src="./assets/croissant.png" alt="Chocolate Croissant">
+                </div>
+                <div class="product-info">
+                    <h3>Chocolate Croissant</h3>
+                    <p class="price">$4.50</p>
+                    <button class="add-to-cart-btn" data-product="Chocolate Croissant" data-price="4.50">Add to
+                        Cart</button>
+                </div>
+            </article>
+
+            <!-- 3. Blueberry Muffin -->
+            <article class="product-card">
+                <div class="product-image">
+                    <img src="./assets/muffin.png" alt="Blueberry Muffin">
+                </div>
+                <div class="product-info">
+                    <h3>Blueberry Muffin</h3>
+                    <p class="price">$3.50</p>
+                    <button class="add-to-cart-btn" data-product="Blueberry Muffin" data-price="3.50">Add to
+                        Cart</button>
+                </div>
+            </article>
+
+            <!-- 4. Cinnamon Roll -->
+            <article class="product-card">
+                <div class="product-image">
+                    <img src="./assets/cinnamon.png" alt="Cinnamon Roll">
+                </div>
+                <div class="product-info">
+                    <h3>Cinnamon Roll</h3>
+                    <p class="price">$4.00</p>
+                    <button class="add-to-cart-btn" data-product="Cinnamon Roll" data-price="4.00">Add to Cart</button>
+                </div>
+            </article>
+
+            <!-- 5. Everything Bagel -->
+            <article class="product-card">
+                <div class="product-image">
+                    <img src="./assets/bagel.png" alt="Everything Bagel">
+                </div>
+                <div class="product-info">
+                    <h3>Everything Bagel</h3>
+                    <p class="price">$2.50</p>
+                    <button class="add-to-cart-btn" data-product="Everything Bagel" data-price="2.50">Add to
+                        Cart</button>
+                </div>
+            </article>
+
+            <!-- 6. Raspberry Danish -->
+            <article class="product-card">
+                <div class="product-image">
+                    <img src="./assets/danish.png" alt="Raspberry Danish">
+                </div>
+                <div class="product-info">
+                    <h3>Raspberry Danish</h3>
+                    <p class="price">$4.25</p>
+                    <button class="add-to-cart-btn" data-product="Raspberry Danish" data-price="4.25">Add to
+                        Cart</button>
+                </div>
+            </article>
+
+            <!-- 7. Baguette -->
+            <article class="product-card">
+                <div class="product-image">
+                    <img src="./assets/baguette.png" alt="Baguette">
+                </div>
+                <div class="product-info">
+                    <h3>Baguette</h3>
+                    <p class="price">$3.00</p>
+                    <button class="add-to-cart-btn" data-product="Baguette" data-price="3.00">Add to Cart</button>
+                </div>
+            </article>
+
+            <!-- 8. Slice of Carrot Cake -->
+            <article class="product-card">
+                <div class="product-image">
+                    <img src="./assets/carrot-cake.png" alt="Slice of Carrot Cake">
+                </div>
+                <div class="product-info">
+                    <h3>Slice of Carrot Cake</h3>
+                    <p class="price">$5.50</p>
+                    <button class="add-to-cart-btn" data-product="Slice of Carrot Cake" data-price="5.50">Add to
+                        Cart</button>
+                </div>
+            </article>
+
+            <!-- 9. Espresso Brownie -->
+            <article class="product-card">
+                <div class="product-image">
+                    <img src="./assets/brownie.png" alt="Espresso Brownie">
+                </div>
+                <div class="product-info">
+                    <h3>Espresso Brownie</h3>
+                    <p class="price">$3.75</p>
+                    <button class="add-to-cart-btn" data-product="Espresso Brownie" data-price="3.75">Add to
+                        Cart</button>
+                </div>
+            </article>
+
+            <!-- 10. Lemon Tart -->
+            <article class="product-card">
+                <div class="product-image">
+                    <img src="./assets/berry-tart.png" alt="Lemon Tart">
+                </div>
+                <div class="product-info">
+                    <h3>Lemon Tart</h3>
+                    <p class="price">$4.75</p>
+                    <button class="add-to-cart-btn" data-product="Lemon Tart" data-price="4.75">Add to Cart</button>
+                </div>
+            </article>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 The Daily Crumb. Baked fresh daily.</p>
+    </footer>
+
+    <!-- Script -->
+    <script src="script.js"></script>
+</body>
+
+</html>

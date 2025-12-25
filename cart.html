@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Basket | The Daily Crumb</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@400;700&display=swap"
+        rel="stylesheet">
+    <!-- Local CSS -->
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Cart Specific Styles */
+        .cart-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background-color: var(--white);
+            border-radius: 12px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .cart-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--text-color);
+        }
+
+        .cart-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 2rem;
+        }
+
+        .cart-table th {
+            text-align: left;
+            padding: 1rem;
+            border-bottom: 2px solid var(--card-bg);
+            color: var(--accent-color);
+            font-family: var(--font-header);
+        }
+
+        .cart-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .remove-btn {
+            background: none;
+            border: none;
+            color: #d9534f;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .remove-btn:hover {
+            text-decoration: underline;
+        }
+
+        .total-section {
+            text-align: right;
+            border-top: 2px solid var(--card-bg);
+            padding-top: 1.5rem;
+        }
+
+        .total-label {
+            font-size: 1.25rem;
+            font-weight: bold;
+            margin-right: 1rem;
+        }
+
+        .total-amount {
+            font-size: 1.5rem;
+            color: var(--accent-color);
+            font-weight: 700;
+        }
+
+        .checkout-actions {
+            margin-top: 2rem;
+            text-align: right;
+        }
+
+        .empty-message {
+            text-align: center;
+            padding: 3rem;
+            font-size: 1.2rem;
+            color: #777;
+        }
+
+        .empty-link {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="logo">The Daily Crumb</div>
+
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="menu.html">Menu</a>
+            <a href="cart.html" style="color: var(--accent-color);">Cart</a>
+        </div>
+
+
+    </nav>
+
+    <!-- Cart Content -->
+    <main class="cart-container">
+        <h1 class="cart-header">Your Basket</h1>
+
+        <div id="cart-content">
+            <!-- Table will be injected here -->
+            <table class="cart-table" id="items-table">
+                <thead>
+                    <tr>
+                        <th width="50%">Product</th>
+                        <th width="25%">Price</th>
+                        <th width="25%">Action</th>
+                    </tr>
+                </thead>
+                <tbody id="cart-body">
+                    <!-- Items go here -->
+                </tbody>
+            </table>
+
+            <div class="total-section">
+                <span class="total-label">Total:</span>
+                <span class="total-amount" id="total-price">$0.00</span>
+            </div>
+
+            <div class="checkout-actions">
+                <button class="cta-button" onclick="alert('Checkout feature coming soon!')">Checkout</button>
+            </div>
+        </div>
+
+        <div id="empty-state" style="display: none;" class="empty-message">
+            <p>Your basket looks empty! <a href="menu.html" class="empty-link">Go eat some cake.</a></p>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 The Daily Crumb. Baked fresh daily.</p>
+    </footer>
+
+    <!-- Global Logic (Badge) -->
+    <script src="script.js"></script>
+
+    <!-- Cart Page Logic -->
+    <script>
+        // Retrieve cart from localStorage
+        // Note: 'cart' variable might be declared in script.js, but since script.js loads first,
+        // we can access it if it's global, OR we can re-read it to be safe.
+        // script.js declares 'let cart', so it is in global scope.
+
+        const cartBody = document.getElementById('cart-body');
+        const totalPriceEl = document.getElementById('total-price');
+        const cartContent = document.getElementById('cart-content');
+        const emptyState = document.getElementById('empty-state');
+
+        function renderCartPage() {
+            // refresh data from storage just in case
+            const currentCart = JSON.parse(localStorage.getItem('bakeryCart')) || [];
+
+            if (currentCart.length === 0) {
+                cartContent.style.display = 'none';
+                emptyState.style.display = 'block';
+                return;
+            } else {
+                cartContent.style.display = 'block';
+                emptyState.style.display = 'none';
+            }
+
+            cartBody.innerHTML = '';
+            let total = 0;
+
+            currentCart.forEach((item, index) => {
+                total += item.price;
+
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${item.name}</td>
+                    <td>$${item.price.toFixed(2)}</td>
+                    <td><button class="remove-btn" onclick="removeItem(${index})">Remove</button></td>
+                `;
+                cartBody.appendChild(row);
+            });
+
+            totalPriceEl.textContent = `$${total.toFixed(2)}`;
+        }
+
+        function removeItem(index) {
+            // 1. Get current cart
+            let currentCart = JSON.parse(localStorage.getItem('bakeryCart')) || [];
+
+            // 2. Remove product at index
+            currentCart.splice(index, 1);
+
+            // 3. Save back to storage
+            localStorage.setItem('bakeryCart', JSON.stringify(currentCart));
+
+            // 4. Update the global 'cart' variable in script.js so the badge updates
+            // (If script.js logic allows. We can also just reload or force update)
+            if (typeof updateCartUI === 'function') {
+                // We need to update the global 'cart' ref first
+                cart = currentCart; // 'cart' is global in script.js
+                updateCartUI();
+            }
+
+            // 5. Re-render this page
+            renderCartPage();
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', renderCartPage);
+
+    </script>
+</body>
+
+</html>
